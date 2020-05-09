@@ -1,0 +1,89 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://arm_controller.gd" type="Script" id=1]
+
+[sub_resource type="CylinderMesh" id=1]
+top_radius = 2.0
+height = 12.0
+radial_segments = 7
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.45098, 0.615686, 0.815686, 1 )
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.34
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 6, 1.5, 3 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.894118, 0.917647, 0.94902, 1 )
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.34
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_color = Color( 0.815686, 0.67451, 0.45098, 1 )
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.34
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_color = Color( 0.890196, 0.831373, 0.811765, 1 )
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.34
+
+[sub_resource type="ProceduralSky" id=5]
+sky_top_color = Color( 0.839216, 0.647059, 0.945098, 1 )
+sky_horizon_color = Color( 0.564706, 0.164706, 0.498039, 1 )
+sky_curve = 0.527071
+ground_bottom_color = Color( 0.168627, 0.0431373, 0.215686, 1 )
+ground_horizon_color = Color( 0.258824, 0.0745098, 0.431373, 1 )
+sun_color = Color( 0, 0, 0, 1 )
+sun_latitude = 0.0
+sun_angle_min = 10.0
+sun_angle_max = 200.0
+sun_curve = 0.22974
+sun_energy = 3.18
+
+[sub_resource type="Environment" id=6]
+background_mode = 2
+background_sky = SubResource( 5 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 16.574 )
+current = true
+fov = 45.0
+size = 10.0
+
+[node name="LeftArm" type="MeshInstance" parent="."]
+transform = Transform( -0.819152, -0.573576, 0, 0.573576, -0.819152, 0, 0, 0, 1, -6.5, 6, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 3 )
+
+[node name="Hand" type="MeshInstance" parent="LeftArm"]
+transform = Transform( 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 1.83498, -6.96611, 0 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 4 )
+
+[node name="RightArm" type="MeshInstance" parent="."]
+transform = Transform( 0.819152, 0.573576, -3.25841e-07, 0.573576, -0.819152, 0, -2.66914e-07, -1.86895e-07, -1, 6.5, 6, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 7 )
+
+[node name="Hand" type="MeshInstance" parent="RightArm"]
+transform = Transform( 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 1.83498, -6.96611, 0 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 8 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.911611, 0.411053, 0, -0.411053, 0.911611, 0, 20, 20 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 6 )
+
+[node name="Arm Controller" type="Node" parent="."]
+script = ExtResource( 1 )
