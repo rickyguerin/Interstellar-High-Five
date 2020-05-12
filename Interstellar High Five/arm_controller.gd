@@ -1,5 +1,7 @@
 extends Node
 
+signal game_ended
+
 const rotVec = Vector3(0.0, 0.0, 1.0)
 const transVec = Vector3(0.052, 0.0, 0.0)
 
@@ -21,6 +23,7 @@ func _process(delta):
 
 	if leftRot <= 120.05 and rightRot <= 120.05:
 		game_over_flag = true
+		emit_signal("game_ended")
 		return
 
 	# Move left arm
