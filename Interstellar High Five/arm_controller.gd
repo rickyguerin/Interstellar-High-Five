@@ -6,13 +6,10 @@ const transVec = Vector3(0.052, 0.0, 0.0)
 var leftArm
 var rightArm
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	leftArm = get_parent().get_node("LeftArm")
 	rightArm = get_parent().get_node("RightArm")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-# warning-ignore:unused_argument
 func _process(delta):
 	var leftRot = rad2deg(leftArm.rotation.z)
 	var rightRot = rad2deg(rightArm.rotation.z)
