@@ -2,44 +2,44 @@ extends Node
 
 signal game_ended
 
-const rotVec = Vector3(0.0, 0.0, 1.0)
-const transVec = Vector3(0.052, 0.0, 0.0)
+const ROT_VEC = Vector3(0.0, 0.0, 1.0)
+const TRANS_VEC = Vector3(0.052, 0.0, 0.0)
 
-var leftArm
-var rightArm
+var left_arm
+var right_arm
 var game_over_flag
 
 func _ready():
-	leftArm = get_parent().get_node("LeftArm")
-	rightArm = get_parent().get_node("RightArm")
+	left_arm = get_parent().get_node("LeftArm")
+	right_arm = get_parent().get_node("RightArm")
 	game_over_flag = false
 
 func _process(delta):
 	if game_over_flag:
 		return
 
-	var leftRot = rad2deg(leftArm.rotation.z)
-	var rightRot = rad2deg(rightArm.rotation.z)
+	var left_rot = rad2deg(left_arm.rotation.z)
+	var right_rot = rad2deg(right_arm.rotation.z)
 
-	if leftRot <= 120.05 and rightRot <= 120.05:
+	if left_rot <= 120.05 and right_rot <= 120.05:
 		game_over_flag = true
 		emit_signal("game_ended")
 		return
 
 	# Move left arm
-	if Input.is_action_pressed("left_arm_move") and leftRot > 120:
-		leftArm.rotate_object_local(rotVec, deg2rad(-2) * delta)
-		leftArm.global_translate(transVec * delta)
+	if Input.is_action_pressed("left_arm_move") and left_rot > 120:
+		left_arm.rotate_object_local(ROT_VEC, deg2rad(-2) * delta)
+		left_arm.global_translate(TRANS_VEC * delta)
 
-	elif leftRot < 145:
-		leftArm.rotate_object_local(rotVec, deg2rad(2) * delta)
-		leftArm.global_translate(transVec * -delta)
+	elif left_rot < 145:
+		left_arm.rotate_object_local(ROT_VEC, deg2rad(2) * delta)
+		left_arm.global_translate(TRANS_VEC * -delta)
 
 	# Move right arm
-	if Input.is_action_pressed("right_arm_move") and rightRot > 120:
-		rightArm.rotate_object_local(rotVec, deg2rad(-2) * delta)
-		rightArm.global_translate(transVec * -delta)
+	if Input.is_action_pressed("right_arm_move") and right_rot > 120:
+		right_arm.rotate_object_local(ROT_VEC, deg2rad(-2) * delta)
+		right_arm.global_translate(TRANS_VEC * -delta)
 
-	elif rightRot < 145:
-		rightArm.rotate_object_local(rotVec, deg2rad(2) * delta)
-		rightArm.global_translate(transVec * delta)
+	elif right_rot < 145:
+		right_arm.rotate_object_local(ROT_VEC, deg2rad(2) * delta)
+		right_arm.global_translate(TRANS_VEC * delta)
