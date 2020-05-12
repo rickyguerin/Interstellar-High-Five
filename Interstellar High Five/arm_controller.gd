@@ -1,5 +1,8 @@
 extends Node
 
+const rotVec = Vector3(0.0, 0.0, 1.0)
+const transVec = Vector3(0.052, 0.0, 0.0)
+
 var leftArm
 var rightArm
 
@@ -13,9 +16,6 @@ func _ready():
 func _process(delta):
 	var leftRot = rad2deg(leftArm.rotation.z)
 	var rightRot = rad2deg(rightArm.rotation.z)
-	
-	var rotVec = Vector3(0.0, 0.0, 1.0)
-	var transVec = Vector3(0.05, 0.0, 0.0)
 
 	# Move left arm
 	if Input.is_action_pressed("left_arm_move") and leftRot > 120:
