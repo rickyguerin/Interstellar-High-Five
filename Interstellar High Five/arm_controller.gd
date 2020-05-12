@@ -5,14 +5,23 @@ const transVec = Vector3(0.052, 0.0, 0.0)
 
 var leftArm
 var rightArm
+var game_over_flag
 
 func _ready():
 	leftArm = get_parent().get_node("LeftArm")
 	rightArm = get_parent().get_node("RightArm")
+	game_over_flag = false
 
 func _process(delta):
+	if game_over_flag:
+		return
+
 	var leftRot = rad2deg(leftArm.rotation.z)
 	var rightRot = rad2deg(rightArm.rotation.z)
+
+	if leftRot <= 120.05 and rightRot <= 120.05:
+		game_over_flag = true
+		return
 
 	# Move left arm
 	if Input.is_action_pressed("left_arm_move") and leftRot > 120:
