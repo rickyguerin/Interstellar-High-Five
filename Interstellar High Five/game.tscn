@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://arm_controller.gd" type="Script" id=1]
 [ext_resource path="res://RobotoMono-Bold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://game_timer.gd" type="Script" id=3]
+[ext_resource path="res://mode_label.gd" type="Script" id=4]
+[ext_resource path="res://mode_controller.gd" type="Script" id=5]
 
 [sub_resource type="CylinderMesh" id=1]
 top_radius = 2.0
@@ -125,9 +127,11 @@ custom_colors/font_color = Color( 0.117647, 0.756863, 0.843137, 1 )
 text = "Left Arm Mode: 
 ????"
 align = 1
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+arm_name = "Left"
 
 [node name="RightLabel" type="Label" parent="."]
 margin_left = 715.0
@@ -136,10 +140,15 @@ margin_right = 1015.0
 margin_bottom = 125.0
 custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 0.72549, 0.392157, 0.235294, 1 )
-text = "Left Arm Mode: 
+text = "Right Arm Mode: 
 ????"
 align = 1
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
+arm_name = "Right"
+
+[node name="Mode Controller" type="Node" parent="."]
+script = ExtResource( 5 )
