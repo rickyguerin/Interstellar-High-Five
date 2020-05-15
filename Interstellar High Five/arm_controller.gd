@@ -43,9 +43,15 @@ func _process(delta):
 		game_over_flag = true
 		emit_signal("game_ended")
 		return
-		
-	_hold_mode(delta)
-
+	
+	for i in range(2):
+		match _modes[i]:
+			_mode_controller.Modes.HOLD:
+				_hold_mode(i, delta)
+			_mode_controller.Modes.MASH:
+				_hold_mode(i, delta)
+			_mode_controller.Modes.RELEASE:
+				_hold_mode(i, delta)
 
 # mode_changed signal handler
 func _set_arm_mode(updated_arm: int, mode: int):
