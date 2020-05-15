@@ -12,10 +12,21 @@ var game_over_flag
 var _left_rot
 var _right_rot
 
+# Mode Controller Node
+var _mode_controller
+
+# Current mode for each arm
+var _modes: Array
+
 func _ready():
 	left_arm = get_parent().get_node("LeftArm")
 	right_arm = get_parent().get_node("RightArm")
 	game_over_flag = false
+	
+	_mode_controller = get_parent().get_node("Mode Controller")
+	_mode_controller.connect("mode_changed", self, "_set_arm_mode")
+
+	_modes = [_mode_controller.Modes.HOLD, _mode_controller.Modes.HOLD]
 
 func _process(delta):
 	if game_over_flag:
@@ -49,3 +60,8 @@ func _hold_mode(delta):
 	elif _right_rot < 145:
 		right_arm.rotate_object_local(ROT_VEC, deg2rad(2) * delta)
 		right_arm.global_translate(TRANS_VEC * delta)
+
+# mode_changed signal handler
+func _set_arm_mode(updated_arm: int, mode: int):
+	_modes[updated_arm] = mode
+
