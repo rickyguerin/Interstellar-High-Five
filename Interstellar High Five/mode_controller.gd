@@ -36,8 +36,8 @@ func _process(delta):
 		if _timers[i] <= 0.0:
 			_modes[i] += _rng.randi_range(1, Modes.size() - 1)
 			_modes[i] %= Modes.size()
-			_timers[i] = _rng.randf_range(2.0, 4.0)
 			emit_signal("mode_changed", i, _modes[i])
+			_timers[i] = _rng.randf_range(1.0, 3.0)
  
 		# Update timer
 		_timers[i] -= delta
