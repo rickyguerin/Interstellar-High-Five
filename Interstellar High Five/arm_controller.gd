@@ -5,9 +5,10 @@ signal game_ended
 const ROT_VEC = Vector3(0.0, 0.0, 1.0)
 const TRANS_VEC = Vector3(0.052, 0.0, 0.0)
 
-var left_arm
-var right_arm
 var game_over_flag
+
+var _arm_nodes: Array
+var _arm_rotations: Array
 
 var _left_rot
 var _right_rot
@@ -19,8 +20,11 @@ var _mode_controller
 var _modes: Array
 
 func _ready():
-	left_arm = get_parent().get_node("LeftArm")
-	right_arm = get_parent().get_node("RightArm")
+	var left_arm = get_parent().get_node("LeftArm")
+	var right_arm = get_parent().get_node("RightArm")
+	_arm_nodes = [left_arm, right_arm]
+	_arm_rotations = [0.0, 0.0]
+	
 	game_over_flag = false
 	
 	_mode_controller = get_parent().get_node("Mode Controller")
@@ -32,10 +36,10 @@ func _process(delta):
 	if game_over_flag:
 		return
 
-	_left_rot = rad2deg(left_arm.rotation.z)
-	_right_rot = rad2deg(right_arm.rotation.z)
+	_arm_rotations[0] = rad2deg(_arm_nodes[0].rotation.z)
+	_arm_rotations[1] = rad2deg(_arm_nodes[1].rotation.z)
 
-	if _left_rot <= 120.05 and _right_rot <= 120.05:
+	if _arm_rotations[0] <= 120.05 and _arm_rotations[1] <= 120.05:
 		game_over_flag = true
 		emit_signal("game_ended")
 		return
