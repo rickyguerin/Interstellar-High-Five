@@ -46,26 +46,20 @@ func _process(delta):
 		
 	_hold_mode(delta)
 
-func _hold_mode(delta):
-	# Move left arm
-	if Input.is_action_pressed("left_arm_move") and _left_rot > 120:
-		left_arm.rotate_object_local(ROT_VEC, deg2rad(-2) * delta)
-		left_arm.global_translate(TRANS_VEC * delta)
-
-	elif _left_rot < 145:
-		left_arm.rotate_object_local(ROT_VEC, deg2rad(2) * delta)
-		left_arm.global_translate(TRANS_VEC * -delta)
-
-	# Move right arm
-	if Input.is_action_pressed("right_arm_move") and _right_rot > 120:
-		right_arm.rotate_object_local(ROT_VEC, deg2rad(-2) * delta)
-		right_arm.global_translate(TRANS_VEC * -delta)
-
-	elif _right_rot < 145:
-		right_arm.rotate_object_local(ROT_VEC, deg2rad(2) * delta)
-		right_arm.global_translate(TRANS_VEC * delta)
 
 # mode_changed signal handler
 func _set_arm_mode(updated_arm: int, mode: int):
 	_modes[updated_arm] = mode
 
+func _hold_mode(arm_id: int, delta: float):
+	# left/right arms translate in opposite directions
+	var d = 1 if arm_id == 0 else -1;
+	
+	if Input.is_action_pressed("move_arm_" + str(arm_id)) \
+			and _arm_rotations[arm_id] > 120:
+		_arm_nodes[arm_id].rotate_object_local(ROT_VEC, deg2rad(-2) * delta)
+		_arm_nodes[arm_id].global_translate(TRANS_VEC * delta * d)
+
+	elif _arm_rotations[arm_id] < 145:
+		_arm_nodes[arm_id].rotate_object_local(ROT_VEC, deg2rad(2) * delta)
+		_arm_nodes[arm_id].global_translate(TRANS_VEC * -delta * d)
