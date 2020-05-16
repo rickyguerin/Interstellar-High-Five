@@ -49,9 +49,9 @@ func _process(delta):
 			_mode_controller.Modes.HOLD:
 				_hold_mode(i, delta)
 			_mode_controller.Modes.MASH:
-				_hold_mode(i, delta)
+				_mash_mode(i, delta)
 			_mode_controller.Modes.RELEASE:
-				_hold_mode(i, delta)
+				_release_mode(i, delta)
 
 # mode_changed signal handler
 func _set_arm_mode(updated_arm: int, mode: int):
