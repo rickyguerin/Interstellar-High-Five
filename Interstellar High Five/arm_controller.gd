@@ -6,6 +6,7 @@ signal game_ended
 # Define how the arms should rotate/translate
 const ROT_VEC = Vector3(0.0, 0.0, 1.0)
 const TRANS_VEC = Vector3(0.052, 0.0, 0.0)
+const MASH_RATE = 10
 
 # Flag is set on high five, prevents the arms from moving
 var _game_over: bool
@@ -19,6 +20,9 @@ var _arm_nodes: Array
 var _arm_rotations: Array
 var _arm_modes: Array
 
+# Number of frames since each button was pressed
+# F is [0], J is [1]
+var _frames_since_press: Array
 
 func _ready():
 	# Get nodes
@@ -30,6 +34,7 @@ func _ready():
 	_arm_nodes = [left_arm, right_arm]
 	_arm_rotations = [0.0, 0.0]
 	_arm_modes = [_mode_controller.Modes.HOLD, _mode_controller.Modes.HOLD]
+	_frames_since_press = [MASH_RATE, MASH_RATE]
 	
 	_game_over = false
 	
@@ -58,6 +63,7 @@ func _process(delta):
 			_mode_controller.Modes.RELEASE:
 				_release_mode(i, delta)
 
+		_frames_since_press[i] += 1
 
 # mode_changed signal handler
 func _set_arm_mode(updated_arm: int, mode: int):
@@ -75,6 +81,9 @@ func _hold_mode(arm_id: int, delta: float):
 # Control an arm when it's in MASH mode
 func _mash_mode(arm_id: int, delta: float):
 	if Input.is_action_just_pressed("move_arm_" + str(arm_id)):
+		_frames_since_press[arm_id] = 0
+		
+	if _frames_since_press[arm_id] <= MASH_RATE:
 		_move_arm_in(arm_id, delta)
 	else:
 		_move_arm_out(arm_id, delta)
