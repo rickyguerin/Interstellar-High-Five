@@ -17,20 +17,20 @@ var _right_rot
 var _mode_controller
 
 # Current mode for each arm
-var _modes: Array
+var _arm_modes: Array
 
 func _ready():
 	var left_arm = get_parent().get_node("LeftArm")
 	var right_arm = get_parent().get_node("RightArm")
 	_arm_nodes = [left_arm, right_arm]
 	_arm_rotations = [0.0, 0.0]
+	_arm_modes = [_mode_controller.Modes.HOLD, _mode_controller.Modes.HOLD]
 	
 	game_over_flag = false
 	
 	_mode_controller = get_parent().get_node("Mode Controller")
 	_mode_controller.connect("mode_changed", self, "_set_arm_mode")
 
-	_modes = [_mode_controller.Modes.HOLD, _mode_controller.Modes.HOLD]
 
 func _process(delta):
 	if game_over_flag:
@@ -45,7 +45,7 @@ func _process(delta):
 		return
 	
 	for i in range(2):
-		match _modes[i]:
+		match _arm_modes[i]:
 			_mode_controller.Modes.HOLD:
 				_hold_mode(i, delta)
 			_mode_controller.Modes.MASH:
@@ -55,7 +55,7 @@ func _process(delta):
 
 # mode_changed signal handler
 func _set_arm_mode(updated_arm: int, mode: int):
-	_modes[updated_arm] = mode
+	_arm_modes[updated_arm] = mode
 
 # Control an arm when it's in HOLD mode
 func _hold_mode(arm_id: int, delta: float):
