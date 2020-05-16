@@ -58,9 +58,11 @@ func _process(delta):
 			_mode_controller.Modes.RELEASE:
 				_release_mode(i, delta)
 
+
 # mode_changed signal handler
 func _set_arm_mode(updated_arm: int, mode: int):
 	_arm_modes[updated_arm] = mode
+
 
 # Control an arm when it's in HOLD mode
 func _hold_mode(arm_id: int, delta: float):
@@ -76,7 +78,7 @@ func _mash_mode(arm_id: int, delta: float):
 		_move_arm_in(arm_id, delta)
 	else:
 		_move_arm_out(arm_id, delta)
-	
+
 
 # Control an arm when it's in RELEASE mode
 func _release_mode(arm_id: int, delta: float):
