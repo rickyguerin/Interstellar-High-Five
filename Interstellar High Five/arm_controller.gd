@@ -59,6 +59,12 @@ func _set_arm_mode(updated_arm: int, mode: int):
 
 # Control an arm when it's in HOLD mode
 func _hold_mode(arm_id: int, delta: float):
+# Control an arm when it's in RELEASE mode
+func _release_mode(arm_id: int, delta: float):
+	if Input.is_action_pressed("move_arm_" + str(arm_id)):
+		_move_arm_out(arm_id, delta)
+	else:
+		_move_arm_in(arm_id, delta)
 	# left/right arms translate in opposite directions
 	var d = 1 if arm_id == 0 else -1;
 	
@@ -75,6 +81,3 @@ func _hold_mode(arm_id: int, delta: float):
 func _mash_mode(arm_id: int, delta: float):
 	pass
 	
-# Control an arm when it's in RELEASE mode
-func _release_mode(arm_id: int, delta: float):
-	pass
