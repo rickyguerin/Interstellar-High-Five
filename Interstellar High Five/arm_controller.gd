@@ -6,8 +6,6 @@ const ROT_VEC = Vector3(0.0, 0.0, 1.0)
 const TRANS_VEC = Vector3(0.052, 0.0, 0.0)
 
 
-var _arm_nodes: Array
-var _arm_rotations: Array
 
 var _game_over: bool
 
@@ -15,18 +13,20 @@ var _game_over: bool
 var _mode_controller
 
 # Current mode for each arm
+var _arm_nodes: Array
+var _arm_rotations: Array
 var _arm_modes: Array
 
 func _ready():
 	var left_arm = get_parent().get_node("LeftArm")
 	var right_arm = get_parent().get_node("RightArm")
+	_mode_controller = get_parent().get_node("Mode Controller")
 	_arm_nodes = [left_arm, right_arm]
 	_arm_rotations = [0.0, 0.0]
 	_arm_modes = [_mode_controller.Modes.HOLD, _mode_controller.Modes.HOLD]
 	
 	_game_over = false
 	
-	_mode_controller = get_parent().get_node("Mode Controller")
 	_mode_controller.connect("mode_changed", self, "_set_arm_mode")
 
 
