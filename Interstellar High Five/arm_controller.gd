@@ -57,6 +57,7 @@ func _process(delta):
 func _set_arm_mode(updated_arm: int, mode: int):
 	_modes[updated_arm] = mode
 
+# Control an arm when it's in HOLD mode
 func _hold_mode(arm_id: int, delta: float):
 	# left/right arms translate in opposite directions
 	var d = 1 if arm_id == 0 else -1;
@@ -69,3 +70,11 @@ func _hold_mode(arm_id: int, delta: float):
 	elif _arm_rotations[arm_id] < 145:
 		_arm_nodes[arm_id].rotate_object_local(ROT_VEC, deg2rad(2) * delta)
 		_arm_nodes[arm_id].global_translate(TRANS_VEC * -delta * d)
+
+# Control an arm when it's in MASH mode
+func _mash_mode(arm_id: int, delta: float):
+	pass
+	
+# Control an arm when it's in RELEASE mode
+func _release_mode(arm_id: int, delta: float):
+	pass
