@@ -17,6 +17,7 @@ _global_script_class_icons={
 
 config/name="Interstellar High Five"
 run/main_scene="res://game.tscn"
+boot_splash/image="res://wallpaper.png"
 config/icon="res://icon.png"
 
 [input]
