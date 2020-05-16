@@ -9,8 +9,6 @@ const TRANS_VEC = Vector3(0.052, 0.0, 0.0)
 var _arm_nodes: Array
 var _arm_rotations: Array
 
-var _left_rot
-var _right_rot
 var _game_over: bool
 
 # Mode Controller Node
