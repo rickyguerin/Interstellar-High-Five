@@ -1,32 +1,39 @@
 extends Node
 
+# Tell timer that the game has ended
 signal game_ended
 
+# Define how the arms should rotate/translate
 const ROT_VEC = Vector3(0.0, 0.0, 1.0)
 const TRANS_VEC = Vector3(0.052, 0.0, 0.0)
 
-
-
+# Flag is set on high five, prevents the arms from moving
 var _game_over: bool
 
 # Mode Controller Node
 var _mode_controller
 
-# Current mode for each arm
+# Data for each arm
+# Left arm is [0], right is [1]
 var _arm_nodes: Array
 var _arm_rotations: Array
 var _arm_modes: Array
 
+
 func _ready():
+	# Get nodes
 	var left_arm = get_parent().get_node("LeftArm")
 	var right_arm = get_parent().get_node("RightArm")
 	_mode_controller = get_parent().get_node("Mode Controller")
+
+	# Init arm globals
 	_arm_nodes = [left_arm, right_arm]
 	_arm_rotations = [0.0, 0.0]
 	_arm_modes = [_mode_controller.Modes.HOLD, _mode_controller.Modes.HOLD]
 	
 	_game_over = false
 	
+	# Receive mode_changed
 	_mode_controller.connect("mode_changed", self, "_set_arm_mode")
 
 
