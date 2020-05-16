@@ -1,14 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://menu.gd" type="Script" id=1]
 [ext_resource path="res://RobotoMono-Bold.ttf" type="DynamicFontData" id=2]
 
 [sub_resource type="DynamicFont" id=1]
-size = 70
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 30
+size = 40
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -40,19 +36,11 @@ size_flags_vertical = 3
 
 [node name="Title Label" type="Label" parent="Overall VBox/VBoxContainer"]
 margin_right = 924.0
-margin_bottom = 93.0
+margin_bottom = 109.0
+size_flags_vertical = 5
 custom_fonts/font = SubResource( 1 )
-text = "Interstellar High Five"
-align = 1
-valign = 1
-
-[node name="Tagline Label" type="Label" parent="Overall VBox/VBoxContainer"]
-margin_top = 97.0
-margin_right = 924.0
-margin_bottom = 138.0
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0.654902, 0.654902, 0.654902, 1 )
-text = "A high five simulator for two players"
+text = "[F] controls the left robot arm
+[J] controls the right robot arm"
 align = 1
 valign = 1
 
