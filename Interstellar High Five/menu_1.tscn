@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://menu.gd" type="Script" id=1]
 [ext_resource path="res://RobotoMono-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://smallerWildcard.png" type="Texture" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
@@ -43,6 +44,13 @@ text = "[F] key controls the left robot arm
 [J] key controls the right robot arm"
 align = 1
 valign = 1
+
+[node name="TextureRect" type="TextureRect" parent="Overall VBox/VBoxContainer"]
+margin_top = 113.0
+margin_right = 924.0
+margin_bottom = 249.0
+texture = ExtResource( 3 )
+stretch_mode = 4
 
 [node name="Begin Label" type="Label" parent="Overall VBox"]
 margin_top = 382.0
