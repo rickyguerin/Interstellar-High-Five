@@ -40,21 +40,24 @@ metallic_specular = 1.0
 roughness = 0.34
 
 [sub_resource type="ProceduralSky" id=7]
-sky_top_color = Color( 0.839216, 0.647059, 0.945098, 1 )
-sky_horizon_color = Color( 0.564706, 0.164706, 0.498039, 1 )
+sky_top_color = Color( 0.14902, 0.0980392, 0.482353, 1 )
+sky_horizon_color = Color( 0.529412, 0.129412, 0.462745, 1 )
 sky_curve = 0.527071
-ground_bottom_color = Color( 0.168627, 0.0431373, 0.215686, 1 )
-ground_horizon_color = Color( 0.258824, 0.0745098, 0.431373, 1 )
-sun_color = Color( 0, 0, 0, 1 )
-sun_latitude = 0.0
+ground_bottom_color = Color( 0.184314, 0.160784, 0.160784, 1 )
+ground_horizon_color = Color( 0.32549, 0.32549, 0.32549, 1 )
+ground_curve = 0.251067
+ground_energy = 5.0
+sun_color = Color( 0.0117647, 0, 0.0392157, 1 )
+sun_latitude = 60.0
 sun_angle_min = 10.0
-sun_angle_max = 200.0
-sun_curve = 0.22974
-sun_energy = 3.18
+sun_angle_max = 15.0
+sun_curve = 0.303143
 
 [sub_resource type="Environment" id=8]
 background_mode = 2
 background_sky = SubResource( 7 )
+background_sky_custom_fov = 60.0
+background_sky_orientation = Basis( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788 )
 
 [sub_resource type="DynamicFont" id=9]
 size = 30
