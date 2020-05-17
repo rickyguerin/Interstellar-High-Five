@@ -161,3 +161,7 @@ script = ExtResource( 5 )
 stream = ExtResource( 6 )
 volume_db = -10.0
 autoplay = true
+
+[node name="DirectionalLight2" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 25.8151, 0 )
+light_energy = 4.0
