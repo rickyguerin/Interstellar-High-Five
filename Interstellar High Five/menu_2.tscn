@@ -7,7 +7,7 @@
 size = 40
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 size = 30
 font_data = ExtResource( 2 )
 
@@ -61,7 +61,7 @@ margin_top = 459.0
 margin_right = 924.0
 margin_bottom = 500.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "Press [J] to start the game!            (3/3)"
 align = 1
 valign = 1
